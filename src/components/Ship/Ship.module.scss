@@ -1,0 +1,177 @@
+@import "Ship.variables";
+
+.ship {
+  display: flex;
+}
+
+.horizontal {
+  animation: horizontalSwing 2s ease-in-out alternate infinite;
+}
+
+.vertical {
+  animation: verticalSwing 2s ease-in-out alternate infinite;
+}
+
+.singleCell {
+  animation: shipBounce 1.5s ease-in-out alternate infinite;
+}
+
+
+@keyframes shipBounce {
+  $force: 0.002;
+  from {
+    transform: scale(.96) matrix3d(1, 0, 0, 0, 0, 1, 0, -$force, 0, 0, 1, 0, 0, 0, 0, 1);
+    filter: drop-shadow(4px 4px 8px $shadow-color);
+
+  }
+  to {
+    transform: scale(1) matrix3d(1, 0, 0, 0, 0, 1, 0, $force, 0, 0, 1, 0, 0, 0, 0, 1);
+    filter: drop-shadow(0 0 4px $shadow-color);
+  }
+}
+
+@keyframes horizontalSwing {
+  $force: 0.003;
+  from {
+    transform: matrix3d(1, 0, 0, 0, 0, 1, 0, $force, 0, 0, 1, 0, 0, 0, 0, 1);
+    filter: drop-shadow(0 2px 6px $shadow-color);
+
+  }
+  to {
+    transform: matrix3d(1, 0, 0, 0, 0, 1, 0, -$force, 0, 0, 1, 0, 0, 0, 0, 1);
+    filter: drop-shadow(6px 6px 8px $shadow-color);
+
+  }
+}
+
+@keyframes verticalSwing {
+  from {
+    transform: skewY(4deg) scaleX(-1);
+    filter: drop-shadow(0px 0px 4px $shadow-color);
+  }
+  to {
+    transform: skewY(-4deg) scaleX(-1);
+    filter: drop-shadow(-6px 10px 6px $shadow-color);
+  }
+}
+
+.ship__cell {
+  background-size: 100%;
+  background-image: url(./assets/ship.png);
+  background-repeat: no-repeat;
+  background-position: center center;
+  width:  var(--cellSize);
+  height:  var(--cellSize);
+}
+
+.cell__single .ship__cell {
+  background-image: url(./assets/single-cell-ship1.png);
+}
+
+.ship__cell[data-orientation="#{$orientation_none}"]:nth-child(4n+1) {
+  rotate: -90deg;
+}
+
+.ship__cell[data-orientation="#{$orientation_none}"]:nth-child(4n+2) {
+  rotate: -180deg;
+}
+
+.ship__cell[data-orientation="#{$orientation_none}"]:nth-child(4n+3) {
+  rotate: -270deg;
+}
+
+
+.cell__horizontal .ship__cell {
+  rotate: -90deg;
+}
+
+
+
+
+.ship__cell[data-ship-sprite-index="1"] {
+  background-position: 0 calc(var(--cellSize) * 0);
+}
+.ship__cell[data-ship-sprite-index="1"] {
+  z-index: 0;
+
+}
+
+.ship__cell {
+  &[data-orientation="#{$orientation_none}"] {
+  }
+  &[data-orientation="#{$orientation_vertical}"] {
+  }
+  &[data-orientation="#{$orientation_horizontal}"] {
+    //animation: shipSwingY 2s ease-in-out alternate infinite;
+  }
+}
+
+
+.ship__cell[data-orientation="#{$orientation_horizontal}"][data-ship-sprite-index="1"] {
+  z-index: 6
+}
+
+.ship__cell[data-ship-sprite-index="2"] {
+  background-position: 0 calc(var(--cellSize) * -1);
+}
+.ship__cell[data-ship-sprite-index="2"] {
+  z-index: 1;
+}
+.ship__cell[data-orientation="#{$orientation_horizontal}"][data-ship-sprite-index="2"] {
+  z-index: 5
+}
+
+
+.ship__cell[data-ship-sprite-index="3"] {
+  background-position: 0 calc(var(--cellSize) * -2);
+}
+.ship__cell[data-ship-sprite-index="3"] {
+  z-index: 2;
+}
+.ship__cell[data-orientation="#{$orientation_horizontal}"][data-ship-sprite-index="3"] {
+  z-index: 4
+}
+
+.ship__cell[data-ship-sprite-index="4"] {
+  background-position: 0 calc(var(--cellSize) * -3);
+}
+.ship__cell[data-ship-sprite-index="4"] {
+  z-index: 3;
+}
+.ship__cell[data-orientation="#{$orientation_horizontal}"][data-ship-sprite-index="4"] {
+  z-index: 3
+}
+
+
+.ship__cell[data-ship-sprite-index="5"] {
+  background-position: 0 calc(var(--cellSize) * -4);
+}
+.ship__cell[data-ship-sprite-index="5"] {
+  z-index: 4;
+}
+.ship__cell[data-orientation="#{$orientation_horizontal}"][data-ship-sprite-index="5"] {
+  z-index: 2
+}
+
+.ship__cell[data-ship-sprite-index="6"] {
+  background-position: 0 calc(var(--cellSize) * -5);
+
+}
+.ship__cell[data-ship-sprite-index="6"] {
+  z-index: 5
+}
+.ship__cell[data-orientation="#{$orientation_horizontal}"][data-ship-sprite-index="6"] {
+  z-index: 1
+}
+
+.ship__cell[data-ship-sprite-index="7"] {
+  background-position: 0 calc(var(--cellSize) * -6);
+}
+
+.ship__cell[data-ship-sprite-index="7"]{
+  z-index: 6;
+}
+.ship__cell[data-orientation="#{$orientation_horizontal}"][data-ship-sprite-index="7"] {
+  z-index: 0
+}
+

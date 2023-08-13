@@ -1,0 +1,30 @@
+.splash {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  background-image: url(./assets/splash-sprite.png);
+  background-repeat: no-repeat;
+  background-size: 100%;
+  background-position: center;
+  background-position-y: 0;
+
+  animation-name: splashAnimation;
+  animation-timing-function: steps(7);
+  animation-iteration-count: 1;
+  opacity: 0;
+  image-rendering: pixelated;
+  transform: scale(0.5);
+  filter:pixelate(1);
+}
+
+@keyframes splashAnimation {
+  1% {
+    opacity: 1;
+  }
+  100% {
+    background-position-y: -280px;
+  }
+}
+
+
+

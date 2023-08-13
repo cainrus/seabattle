@@ -1,0 +1,40 @@
+.cell {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    aspect-ratio: 1 / 1;
+    transition: filter .2s cubic-bezier(.17,.67,.83,.67);
+}
+
+.cell,
+.cell:before,
+.cell:after {
+    width: var(--cellSize);
+    height: var(--cellSize);
+    box-sizing: border-box;
+}
+
+.cell:before,
+.cell:after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+
+
+@keyframes showAnimation {
+    0% {
+        visibility: hidden;
+    }
+
+    50% {
+        visibility: visible;
+    }
+    100% {
+        visibility: hidden;
+    }
+}
+

@@ -1,0 +1,50 @@
+.cell {
+  background-image: url(../GameLayout/assets/water.gif);
+  animation: swingBackground 4s ease-in-out alternate infinite;
+}
+
+.hidden:not(.hovered):after {
+  position: absolute;
+  background-color: rgba(0,0,0, 0.2);
+}
+
+@keyframes swingBackground {
+  from {
+    background-position: 0 0
+  }
+  to {
+    background-position: 50% 50%
+  }
+}
+
+
+
+.highlighted.miss:after,
+.highlighted.ship:after,
+.highlighted.safe:after {
+  background-image: repeating-linear-gradient(
+                  -45deg,
+                  transparent,
+                  transparent 2.828px,
+                  rgba(255,0,0,0.3) 2.828px,
+                  rgba(255,0,0,0.3) 5.657px
+  );
+}
+
+
+.cell:not(.target).hovered:after,
+.target:after {
+  border: 3px solid rgba(255, 0, 0, .2);
+  animation: pulse-border .75s ease-out infinite;
+  animation-delay: 0.75s;
+}
+
+@keyframes pulse-border {
+  to {
+    border-color: transparent;
+  }
+  from {
+    border-color: rgba(255, 0, 0, .3);
+  }
+}
+

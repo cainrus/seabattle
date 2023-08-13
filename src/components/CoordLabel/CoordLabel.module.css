@@ -1,0 +1,7 @@
+.rulerCell {
+    user-select: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: bold;
+}

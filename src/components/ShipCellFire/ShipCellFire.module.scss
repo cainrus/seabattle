@@ -1,0 +1,43 @@
+@import "../Ship/Ship.variables";
+
+.fire {
+  z-index: 10;
+}
+
+.fire {
+  background-image: url(./assets/fire.gif);
+  animation: fireEffect 1s infinite;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right:0;
+  bottom: 0;
+  width: 40px;
+  height: 40px;
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: center -14px;
+  scale: 1.1 .8;
+}
+
+[data-orientation="#{$orientation_none}"] + .fire {
+  background-position: center -15px;
+  scale: 0.8;
+}
+
+
+
+@keyframes fireEffect {
+  0% {
+    filter: drop-shadow(0px 0px 20px rgba(255, 160, 122, 0.7));
+    transform: skew(0);
+  }
+  50% {
+    filter: drop-shadow(0px 0px 10px rgba(255, 160, 122, 1));
+    transform: skew(-0.06turn, 18deg);
+  }
+  100% {
+    filter: drop-shadow(0px 0px 20px rgba(255, 160, 122, 0.7));
+    transform: skew(0);
+  }
+}

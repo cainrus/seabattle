@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Sea battle</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@400;700&display=swap">
+
+    <style>
+      .board {
+        display: grid;
+        grid-template-columns: repeat(10, 30px);
+        grid-template-rows: repeat(10, 30px);
+        gap: 2px;
+      }
+
+      .cell {
+        width: 30px;
+        height: 30px;
+        border: 1px solid black;
+        text-align: center;
+        line-height: 30px;
+        cursor: pointer;
+      }
+
+      .cell.ship {
+        background-color: gray;
+      }
+
+      .cell.hit {
+        background-color: red;
+      }
+
+      .cell.miss {
+        background-color: lightblue;
+      }
+
+      .cell.clear {
+        background-color: #ff9d9d;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>

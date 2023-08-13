@@ -1,0 +1,57 @@
+.GameSettings {
+    transition: filter .2s ease-in-out;
+}
+
+.GameSettings.isPausedGameSettings {
+    filter: brightness(.5) grayscale(.5);
+}
+
+.GameSettings.isActiveGameSettings {
+    filter: brightness(1) grayscale(0);
+}
+
+
+.button__close {
+    float: left;
+}
+.button__reset {
+    float: left;
+    margin-right: 10px;
+}
+.button__addShip {
+    float: right;
+}
+
+.styles.section__gridSize {
+    display: grid;
+
+}
+
+.section__header {
+
+}
+
+.section__buttons {
+
+
+}
+
+.section__buttons > button {
+    /*margin-left: 10px;*/
+}
+
+
+.slider {
+    transition: filter 1s ease;
+    filter: grayscale(100%);
+}
+
+.slider:hover {
+    filter: grayscale(20%);
+}
+
+
+.slider:active {
+    filter: grayscale(0);
+}
+

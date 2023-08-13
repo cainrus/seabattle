@@ -1,0 +1,188 @@
+@use "sass:math";
+@import "../../variables.scss";
+
+.wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: filter .2s ease-in-out;
+
+
+}
+
+.isPausedGrid {
+    //filter: brightness(.5) grayscale(.5);
+}
+
+.isActiveGrid {
+    filter: brightness(1) grayscale(0);
+}
+
+
+.layout__battlefield {
+    position: relative;
+}
+
+.isActiveGrid.isTargetGrid .layout__grid {
+    cursor: pointer;
+}
+
+
+.gridContainer {
+    display: grid;
+    grid-template-areas:
+        'menu-cell top-coords'
+        'left-coords grid';
+    grid-template-columns: auto 1fr;
+    grid-template-rows: auto 1fr;
+
+}
+.isActiveGrid.withMenuButton {}
+.isActiveGrid.withMenuButton .menuCell {
+    cursor: pointer;
+}
+.menuCell {
+    grid-area: menu-cell;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.isActiveGrid.withMenuButton .menuCell {
+    color: var(--menuCellColor);
+    background-color: var(--menuCellBackground);
+}
+
+.isActiveGrid.withMenuButton .menuCell:active {
+    color: var(--menuCellActiveBackground);
+}
+
+.isActiveGrid.withMenuButton .menuCell:hover {
+    color: var(--menuCellHoverColor);
+    background-color: var(--menuCellHoverBackground);
+}
+
+.isActiveGrid.withMenuButton .menuCell:active {
+    color: var(--menuCellActiveColor);
+    background-color: var(--menuCellActiveBackground);
+}
+
+
+.topCoords,
+.leftCoords {
+    display: grid;
+}
+
+.topCoords,
+.leftCoords {
+    background-color: var(--gridBorderBackground);
+    color: var(--rulerCellColor);
+}
+
+
+.topCoords {
+    grid-area: top-coords;
+    grid-template-columns: repeat(var(--gridSize), 1fr);
+}
+
+.leftCoords {
+    grid-area: left-coords;
+    grid-template-rows: repeat(var(--gridSize), 1fr);
+
+}
+
+.layout__objectsLayer {
+    z-index: 2
+}
+
+.layout__water {
+    //background: var(--gridBackground) url(./assets/water.gif);
+    //background-repeat: repeat;
+    z-index: 1;
+}
+
+
+
+
+.layout__grid {
+    position: absolute;
+    grid-area: grid;
+    display: grid;
+    grid-template-columns: repeat(var(--gridSize), 1fr);
+    grid-template-rows: repeat(var(--gridSize), 1fr);
+    grid-gap: 0;
+
+}
+
+.layout__top {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 3;
+}
+
+.layout__top:not(.selectable) {
+    background-color: #484848;
+    opacity: 0.3;
+}
+
+
+/** cell classes */
+
+.rulerCell {
+    user-select: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: bold;
+}
+
+//.userSelectAuto .gridCell:hover {
+//    outline: 3px inset var(--cellHoverOutlineColor);
+//}
+//
+//.userSelectAuto .gridCell:hover {
+//    filter: brightness(0.8);
+//    /*background-color: var(--seaCellHoverBackground);*/
+//}
+//
+//.userSelectAuto .gridCell:active {
+//    background-color: var(--seaCellActiveBackground);
+//}
+
+
+.shipCell {
+    background-color: var(--shipCellBackground);
+}
+
+
+
+
+
+
+
+
+//.initialRender * {
+//    animation-duration: 0s;
+//    animation-delay: 0s;
+//    animation: none;
+//}
+
+
+/** utility classes */
+
+.userSelectNone {
+    user-select: none;
+}
+
+.userSelectAuto {
+    user-select: auto;
+}
+
+
+
+.ship[data-incognito="1"] {
+    background-image: url(./assets/ship-part1.png);
+}

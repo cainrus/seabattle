@@ -1,0 +1,40 @@
+$cellSize: 40px;
+
+:root {
+    //--gridSize: 10;
+    --cellSize: #{$cellSize};
+
+    /* grid outside background */
+    --globalBackground: #282828;
+
+    --gridBackground: #2b4162;
+    --gridBorderBackground: #1c2a44;
+
+    /* Left & top ruler with coordinates */
+    --rulerCellColor: #f9bc60;
+
+    /* Empty grid cells */
+    --seaCellHoverBackground: #5f90b8;
+    --seaCellActiveBackground: #426b92;
+
+    /* Top left single cell menu with icon */
+    --menuCellColor: #ffffff;
+    --menuCellHoverColor: #c2c2c2;
+    --menuCellActiveColor: #797979;
+    --menuCellBackground: #2b4162;
+    --menuCellHoverBackground: #1c2a44;
+    --menuCellActiveBackground: #0c1626;
+
+    /* Miss cell */
+    --missCellBackground: #ced9e5;
+    /* Ship cell */
+    --shipCellBackground: #405463;
+    /* Ship damage cell */
+    --damagedShipCellBackground: #f2886b;
+    /* Surrounding around damaged ship */
+    --safeCellBackground: #6ca4cf;
+
+    /* Border around hovered cell */
+    --cellHoverOutlineColor: rgba(255, 255, 255, .1);
+
+}

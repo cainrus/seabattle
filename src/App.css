@@ -1,0 +1,82 @@
+
+
+.container {
+  display: flex;
+  flex-wrap: wrap;
+  width: 100vw;
+  height: 100vh;
+}
+
+.panel {
+  box-sizing: border-box;
+  border: 1px solid #ccc;
+  flex: 1 1 50%;
+  height: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: auto;
+}
+
+
+.board {
+  display: grid;
+  grid-template-columns: repeat(11, 30px);
+  grid-template-rows: repeat(11, 30px);
+  grid-gap: 1px;
+}
+
+.cell {
+  user-select: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 30px;
+  height: 30px;
+  background-color: lightblue;
+  border: 1px solid black;
+}
+
+@keyframes zoom-in-out {
+  0% {
+    transform: scale(1) translate(2px, 2px);;
+  }
+  50% {
+    transform: scale(0.95) translate(2px, 2px);;
+  }
+  100% {
+    transform: scale(1) translate(2px, 2px);;
+  }
+}
+
+
+.debug {
+  background-color: yellow;
+}
+
+.clear {
+  background-color: darkseagreen;
+}
+
+.miss {
+  background-color: gray;
+}
+
+.hit {
+  background-color: red;
+}
+
+.ruler {
+  border: 0;
+  cursor: default;
+  background-color: transparent;
+}
+
+.ruler:not(.done) {
+  pointer-events: none;
+}
+
+.done {
+  animation: zoom-in-out 350ms infinite ease-in-out;
+  cursor: pointer;
+}
