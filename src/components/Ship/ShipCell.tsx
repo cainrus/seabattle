@@ -10,6 +10,7 @@ interface ShipCellProps extends Omit<GridCellProps, 'isShip'> {
     ship: number[],
     orientation: ShipOrientation
     isDamaged?: boolean
+    isVisible?: boolean
 }
 
 /**
@@ -20,16 +21,25 @@ export default function ShipCell(props: ShipCellProps) {
         ship,
         classList=[],
         orientation,
+        isVisible = true,
         ...restProps
     } = props;
 
-    const children: JSX.Element[] = [
-        <div
-            key={'ship'}
-            className={$style.ship__cell}
-            data-ship-sprite-index={getShipSpriteIndex(ship, props.id)}
-        ></div>
-    ];
+
+
+    const children: JSX.Element[] = [];
+
+    if (isVisible) {
+        children.push(
+            <div
+                key={'ship'}
+                className={$style.ship__cell}
+                data-ship-sprite-index={getShipSpriteIndex(ship, props.id)}
+            ></div>
+        )
+    }
+
+
 
     if (restProps.isDamaged) {
         children.push(

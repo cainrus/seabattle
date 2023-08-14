@@ -1,5 +1,5 @@
-import {to} from "@react-spring/web";
 import classnames from "classnames";
+import {GridArea} from "../GridArea/GridArea";
 
 import $style from "./Ship.module.scss";
 
@@ -12,7 +12,7 @@ import {getOrientation} from "./utils/getOrientation";
 interface ShipProps {
     gridSize: number,
     ship: number[]
-    isHit?: boolean,
+    isDestroyed?: boolean,
     damages?: number[]
 }
 
@@ -26,7 +26,7 @@ export function Ship({
     ship,
     gridSize,
     damages = [],
-    isHit = false
+    isDestroyed = false
 }: ShipProps) {
 
     const from = ship.at(0);
@@ -35,35 +35,36 @@ export function Ship({
     if (from === undefined) throw new Error("from is undefined");
     if (to === undefined) throw new Error("to is undefined");
 
-    const fromCoordinates = getGridCoordinates(gridSize, from);
-    const toCoordinates = getGridCoordinates(gridSize, to);
-    const gridColumnStyles = `${fromCoordinates.column} / ${toCoordinates.column + 1}`;
-    const gridRowStyles = `${fromCoordinates.row} / ${toCoordinates.row + 1}`;
+    // const fromCoordinates = getGridCoordinates(gridSize, from);
+    // const toCoordinates = getGridCoordinates(gridSize, to);
+    // const gridColumnStyles = `${fromCoordinates.column} / ${toCoordinates.column + 1}`;
+    // const gridRowStyles = `${fromCoordinates.row} / ${toCoordinates.row + 1}`;
 
     const orientation = getOrientation(ship);
     const orientationClass = orientationClasses[getOrientation(ship)];
+
+    console.log(ship, isDestroyed, orientation)
 
     const shipCells = ship.map((id) => {
         return <ShipCell
             key={id}
             id={id}
             ship={ship}
+            isVisible={isDestroyed}
             orientation={orientation}
             isDamaged={damages.includes(id)}
         />
     })
 
     return (
-        <div
-            className={classnames([$style.ship, orientationClass])}
-            style={{
-                flexFlow: to - from < gridSize ?   'row' : 'column',
-                gridColumn: gridColumnStyles,
-                gridRow: gridRowStyles,
-            }}
+        <GridArea
+            className={classnames([ $style.ship, orientationClass ])}
+            x={from}
+            y={to}
+            gridSize={gridSize}
         >
             {shipCells}
-        </div>
+        </GridArea>
     );
 }
 

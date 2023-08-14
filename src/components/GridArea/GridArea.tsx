@@ -5,22 +5,26 @@ interface GridAreaProps {
     y: number,
     gridSize: number,
     children: JSX.Element | JSX.Element[],
-
+    className?: string
 }
 
 export function GridArea({
                       x,
                       y,
                       gridSize,
-                      children
+                      children,
+                      className,
                   }: GridAreaProps) {
     const fromCoordinates = getGridCoordinates(gridSize, x);
     const toCoordinates = getGridCoordinates(gridSize, y);
-    const gridColumnStyles = `${fromCoordinates.column} / ${toCoordinates.column + 1}`;
-    const gridRowStyles = `${fromCoordinates.row} / ${toCoordinates.row + 1}`;
+
+    const gridColumnStyles = `${toCoordinates.column} / ${fromCoordinates.column + 1 }`;
+    const gridRowStyles = `${toCoordinates.row} / ${fromCoordinates.row + 1 }`;
 
     return (
         <div
+            className={className}
+
             style={{
                 flexFlow: x - y < gridSize ? 'row' : 'column',
                 gridColumn: gridColumnStyles,

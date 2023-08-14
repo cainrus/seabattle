@@ -98,7 +98,7 @@ export const AttackMiniStage: Story = () => {
             players: [
                 {
                     ships: [[0], [6], [8, 12]],
-                    shoots: [0, 6],
+                    shoots: [0, 6, 12],
                     showShips: false,
                     player: 0,
                 }

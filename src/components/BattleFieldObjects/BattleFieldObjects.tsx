@@ -9,6 +9,7 @@ interface BattleFieldObjectsProps {
     shots: number[];
     bombs?: number[],
     targets: number[];
+    destroyed?: boolean[];
 }
 
 
@@ -18,7 +19,7 @@ export function BattleFieldObjects({
     shots,
     ships,
     bombs = [],
-    // destroyed,
+    destroyed = [],
     // isSelectable,
     // onClick,
 }: BattleFieldObjectsProps) {
@@ -42,9 +43,11 @@ export function BattleFieldObjects({
 
     for (const ship of ships) {
         if (ship.length === 0) continue;
+        const index = ships.indexOf(ship);
         groups.push(<Ship
-            key={`ship-${ships.indexOf(ship)}`}
+            key={`ship-${index}`}
             ship={ship}
+            isDestroyed={destroyed[index]}
             damages={ship.filter(id => shots.includes(id))}
             gridSize={gridSize}
         />)

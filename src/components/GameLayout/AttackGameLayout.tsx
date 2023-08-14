@@ -25,8 +25,6 @@ function getDestroyedShipsAdjacentCells(targetPlayerState: PlayerState, gridSize
     return getAdjacentCellsMemoized(destroyedShips.flat(), gridSize)
 }
 
-const bombFallTime = 2000;
-
 export function AttackGameLayout({ onClose }: {onClose: () => void}) {
     const { shotBombAnimation, shotTotalAnimation } = useAnimation();
     const [ shots, setShots ] = useState<number[]>([]);
