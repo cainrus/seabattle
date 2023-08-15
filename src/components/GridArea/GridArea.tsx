@@ -9,24 +9,26 @@ interface GridAreaProps {
 }
 
 export function GridArea({
-                      x,
-                      y,
                       gridSize,
                       children,
                       className,
+                      ...props
                   }: GridAreaProps) {
+
+    const [x, y] = [props.x, props.y].sort();
+
     const fromCoordinates = getGridCoordinates(gridSize, x);
     const toCoordinates = getGridCoordinates(gridSize, y);
 
-    const gridColumnStyles = `${toCoordinates.column} / ${fromCoordinates.column + 1 }`;
-    const gridRowStyles = `${toCoordinates.row} / ${fromCoordinates.row + 1 }`;
+    const gridColumnStyles = `${fromCoordinates.column} / ${toCoordinates.column + 1 }`;
+    const gridRowStyles = `${fromCoordinates.row} / ${toCoordinates.row + 1 }`;
 
     return (
         <div
             className={className}
 
             style={{
-                flexFlow: x - y < gridSize ? 'row' : 'column',
+                flexFlow: Math.abs(y - x) >= gridSize ? 'column' :  'row',
                 gridColumn: gridColumnStyles,
                 gridRow: gridRowStyles,
             }}
