@@ -9,7 +9,7 @@ export default function GridCell({
    onMouseLeave,
    dataset = { type: GridCellType.BATTLEFIELD },
    id,
-    style,
+   style,
    classList = [],
    children,
 }: GridCellProps) {

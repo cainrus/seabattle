@@ -1,3 +1,4 @@
+import {to} from "@react-spring/web";
 import classnames from "classnames";
 import {GridArea} from "../GridArea/GridArea";
 
@@ -22,6 +23,13 @@ const orientationClasses: Record<string, string | undefined> = {
     [ShipOrientation.SingleCell]: $style.singleCell,
 }
 
+function getShipCoords(ship: number[]) {
+    const flatShip = ship.sort((a, b) => a - b);
+    const x = flatShip.at(0);
+    const y = flatShip.at(-1);
+    return {x, y};
+}
+
 export function Ship({
     ship,
     gridSize,
@@ -29,21 +37,13 @@ export function Ship({
     isDestroyed = false
 }: ShipProps) {
 
-    const from = ship.at(0);
-    const to = ship.at(-1);
+    const { x, y } = getShipCoords(ship);
 
-    if (from === undefined) throw new Error("from is undefined");
-    if (to === undefined) throw new Error("to is undefined");
-
-    // const fromCoordinates = getGridCoordinates(gridSize, from);
-    // const toCoordinates = getGridCoordinates(gridSize, to);
-    // const gridColumnStyles = `${fromCoordinates.column} / ${toCoordinates.column + 1}`;
-    // const gridRowStyles = `${fromCoordinates.row} / ${toCoordinates.row + 1}`;
+    if (x === undefined) throw new Error("x is undefined");
+    if (y === undefined) throw new Error("y is undefined");
 
     const orientation = getOrientation(ship);
     const orientationClass = orientationClasses[getOrientation(ship)];
-
-    console.log(ship, isDestroyed, orientation)
 
     const shipCells = ship.map((id) => {
         return <ShipCell
@@ -59,11 +59,11 @@ export function Ship({
     return (
         <GridArea
             className={classnames([ $style.ship, orientationClass ])}
-            x={from}
-            y={to}
+            x={x}
+            y={y}
             gridSize={gridSize}
         >
-            {shipCells}
+            { shipCells }
         </GridArea>
     );
 }

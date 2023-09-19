@@ -25,7 +25,6 @@ export function BattleFieldObjects({
 }: BattleFieldObjectsProps) {
 
     const groups: JSX.Element[] = [];
-
     for (const bomb of bombs) {
         groups.push(
             <GridArea

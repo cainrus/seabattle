@@ -108,8 +108,8 @@
     position: absolute;
     grid-area: grid;
     display: grid;
-    grid-template-columns: repeat(var(--gridSize), 1fr);
-    grid-template-rows: repeat(var(--gridSize), 1fr);
+    grid-template-columns: repeat(var(--gridSize), var(--cellSize));
+    grid-template-rows: repeat(var(--gridSize), var(--cellSize));
     grid-gap: 0;
 
 }

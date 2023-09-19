@@ -60,7 +60,9 @@ export function AttackGameLayout({ onClose }: {onClose: () => void}) {
     // TODO: research, do i need cleaning?
     useEffect(() => {
         if (bombs.length) {
+            console.log('set bomb 1')
             const timeout = setTimeout(() => {
+                console.log('set bomb 2')
                 setBombs([]);
             }, shotBombAnimation);
             return () => clearTimeout(timeout);

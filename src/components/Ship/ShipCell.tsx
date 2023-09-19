@@ -25,10 +25,7 @@ export default function ShipCell(props: ShipCellProps) {
         ...restProps
     } = props;
 
-
-
     const children: JSX.Element[] = [];
-
     if (isVisible) {
         children.push(
             <div

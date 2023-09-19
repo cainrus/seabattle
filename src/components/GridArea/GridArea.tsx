@@ -9,13 +9,13 @@ interface GridAreaProps {
 }
 
 export function GridArea({
-                      gridSize,
-                      children,
-                      className,
-                      ...props
-                  }: GridAreaProps) {
+    gridSize,
+    children,
+    className,
+    ...props
+}: GridAreaProps) {
 
-    const [x, y] = [props.x, props.y].sort();
+    const { x, y } = props;
 
     const fromCoordinates = getGridCoordinates(gridSize, x);
     const toCoordinates = getGridCoordinates(gridSize, y);
@@ -26,14 +26,13 @@ export function GridArea({
     return (
         <div
             className={className}
-
             style={{
                 flexFlow: Math.abs(y - x) >= gridSize ? 'column' :  'row',
                 gridColumn: gridColumnStyles,
                 gridRow: gridRowStyles,
             }}
         >
-            {children}
+            { children }
         </div>
     );
 }
