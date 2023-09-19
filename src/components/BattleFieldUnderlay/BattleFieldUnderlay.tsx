@@ -33,16 +33,13 @@ export function BattleFieldUnderlay ({
 }: BattleFieldProps) {
     const cells: JSX.Element[] = [];
     const anySafeZone = safe.flat();
-
+console.warn(`targets`, targets)
     // const flatShips = ships.flat();
     const hidden: number[] =  [...Array(gridSize * gridSize).keys()]
         .filter(n => !shoots.includes(n) && !anySafeZone.includes(n));
 
     const highlightedList: number[] = [];
-    const destroyedShips: number[] = ships.filter((_, i) => destroyed[i]);
-    console.log('safe', safe)
     for (let i = 0; i < gridSize * gridSize; i++) {
-
 
         const {
             withinSafeZone,
@@ -89,7 +86,7 @@ export function BattleFieldUnderlay ({
             && hovered.id !== undefined
             && (
                 // false ||
-                isMiss && hovered.id === i // highlight miss cell
+                (isDamage || isMiss) && hovered.id === i // highlight miss cell
                 || withinSafeZone.includes(hovered.id) // highlight ship safe zone cell
                 || withinShip.includes(hovered.id) // highlight on of ship cells
             )
@@ -106,7 +103,7 @@ export function BattleFieldUnderlay ({
             highlightedList.push(i);
         }
 
-        const isTarget = isSelectable && !isShip && !isSafe && targets.includes(i);
+        const isTarget = !isShip && !isSafe && targets.includes(i);
 
 
         if (isHidden && !isTarget) classList.push($style.hidden)
