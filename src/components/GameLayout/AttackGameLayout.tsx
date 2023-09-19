@@ -31,7 +31,7 @@ export function AttackGameLayout({ onClose }: {onClose: () => void}) {
     const [ isUiPaused, setUiPaused ] = useState(false);
     const [ isSelectable, setSelectable ] = useState(true);
     const [ targets, setTargets ] = useState<number[]>([]);
-    const [ bombs, setBombs ] = useState<number[]>([]);
+    const [ fallingBombs, setFallingBombs ] = useState<number[]>([]);
 
 
     const { state, dispatch } = useContext(StoreContext);
@@ -40,12 +40,10 @@ export function AttackGameLayout({ onClose }: {onClose: () => void}) {
 
     function shootTarget(id: number) {
         if (targets.length) {
-            setBombs([...targets]);
-            setShots([...targets]);
             setSelectable(false);
-            console.log('?')
+            setFallingBombs([...targets]);
+            setShots([...targets]);
             setTimeout(() => {
-                console.log('!')
                 dispatch({
                     type: ActionTypes.SHOT,
                     cell: id,
@@ -59,15 +57,15 @@ export function AttackGameLayout({ onClose }: {onClose: () => void}) {
 
     // TODO: research, do i need cleaning?
     useEffect(() => {
-        if (bombs.length) {
+        if (fallingBombs.length) {
             console.log('set bomb 1')
             const timeout = setTimeout(() => {
                 console.log('set bomb 2')
-                setBombs([]);
+                setFallingBombs([]);
             }, shotBombAnimation);
             return () => clearTimeout(timeout);
         }
-    }, [ bombs, shotBombAnimation ])
+    }, [ fallingBombs, shotBombAnimation ])
 
     useEffect(() => {
         if (shots.length) {
@@ -92,7 +90,7 @@ export function AttackGameLayout({ onClose }: {onClose: () => void}) {
     return (
         <GameLayout
             {...props}
-            bombs={bombs}
+            bombs={fallingBombs}
             isPaused={isUiPaused}
             isSelectable={isSelectable}
             targets={targets}

@@ -33,7 +33,7 @@ export function useGameLayoutProps(state: State): GameLayoutProps {
 
 
     const safe = ships
-        .filter(ship => ship.every(cell => playerState.shoots.includes(cell)))
+        .filter((ship, i) => destroyed[i] && ship.every(cell => playerState.shoots.includes(cell)))
         .map(ship => getAdjacentCells(ship, gameSettings.gridSize))
 
     return {

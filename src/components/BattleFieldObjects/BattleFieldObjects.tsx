@@ -1,6 +1,7 @@
+import {uniq} from "lodash-es";
+
 import {Bomb} from "../Bomb/Bomb";
 import {GridArea} from "../GridArea/GridArea";
-import {Miss} from "../Miss/Miss";
 import {Ship} from "../Ship/Ship";
 
 interface BattleFieldObjectsProps {
@@ -24,21 +25,9 @@ export function BattleFieldObjects({
     // onClick,
 }: BattleFieldObjectsProps) {
 
+
     const groups: JSX.Element[] = [];
-    for (const bomb of bombs) {
-        groups.push(
-            <GridArea
-                key={`bomb-${bomb}`}
-                gridSize={gridSize}
-                x={bomb}
-                y={bomb}
-            >
-                <Bomb
-                    falling={true}
-                />
-            </GridArea>
-        );
-    }
+
 
     for (const ship of ships) {
         if (ship.length === 0) continue;
@@ -53,14 +42,17 @@ export function BattleFieldObjects({
     }
 
     const misses = shots.filter(id => ships.every(ship => !ship.includes(id)));
-
-    for (const miss of misses) {
-        groups.push(<Miss
-            key={`miss-${miss}`}
-            id={miss}
-            gridSize={gridSize}
-            isAnimation={targets.includes(miss)}
-        />)
+    for (const id of uniq([...misses, ...bombs])) {
+        groups.push(
+            <GridArea
+                key={`area-${id}`}
+                gridSize={gridSize}
+                x={id}
+                y={id}
+            >
+                <Bomb key={`bomb-${id}`} falling={!misses.includes(id)} />
+            </GridArea>
+        );
     }
 
 

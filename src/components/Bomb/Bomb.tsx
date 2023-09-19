@@ -14,12 +14,10 @@ export function Bomb(props: BombProps = {}) {
     const duration = props.duration ?? shotBombAnimation;
 
     const [bombClass, setClassList] = useState([$style.bomb]);
-    console.info('props.falling', props.falling)
     useLayoutEffect(() => {
         if (props.falling) {
             setClassList([$style.bomb, $style.falling])
             const timeout = setTimeout(() => {
-                console.warn('reset')
                 setClassList([$style.bomb])
             }, duration);
             return () => clearTimeout(timeout);

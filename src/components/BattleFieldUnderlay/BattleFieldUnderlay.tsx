@@ -39,9 +39,10 @@ export function BattleFieldUnderlay ({
         .filter(n => !shoots.includes(n) && !anySafeZone.includes(n));
 
     const highlightedList: number[] = [];
+    const destroyedShips: number[] = ships.filter((_, i) => destroyed[i]);
+    console.log('safe', safe)
     for (let i = 0; i < gridSize * gridSize; i++) {
 
-        const destroyedShips = ships.filter((_, i) => destroyed[i])
 
         const {
             withinSafeZone,
