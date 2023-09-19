@@ -14,11 +14,7 @@ export type GameLayoutProps = {
     gridSize: number,
     isLoading: boolean,
     isPaused: boolean,
-
     onTarget?: (id: number) => void;
-
-    // MenuButton?: JSX.Element;
-    // onCellClick?: (props: {id: number, type: GridCellType}) => void;
     onClick?: (event: SyntheticEvent<HTMLElement>) => void;
     createMenuButton?: (props?: Partial<ButtonProps>) => JSX.Element
 };

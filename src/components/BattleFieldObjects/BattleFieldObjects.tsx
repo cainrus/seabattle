@@ -9,20 +9,16 @@ interface BattleFieldObjectsProps {
     ships: number[][];
     shots: number[];
     bombs?: number[],
-    targets: number[];
     destroyed?: boolean[];
 }
 
 
 export function BattleFieldObjects({
-    targets,
     gridSize,
     shots,
     ships,
     bombs = [],
     destroyed = [],
-    // isSelectable,
-    // onClick,
 }: BattleFieldObjectsProps) {
 
 

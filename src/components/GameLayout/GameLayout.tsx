@@ -36,7 +36,7 @@ const GameLayout = ({
     const [
         hovered,
         setHovered,
-    ] = useState<{id?: number, row?: number, column?: number}>({ });
+    ] = useState<{ id: number, row: number, column: number }>({ id: -1, row: -1, column: -1 });
 
 
     const gridCellSize = parseInt(varsData[varCellSizeName])
@@ -120,15 +120,11 @@ const GameLayout = ({
                         className={classnames(styles.layout__grid, styles.layout__objectsLayer)}
                     >
                         <BattleFieldObjects
-                            targets={targets}
                             gridSize={gridSize}
                             shots={shoots}
                             bombs={bombs}
                             ships={ships}
                             destroyed={destroyed}
-                            safe={safe}
-                            isSelectable={isSelectable}
-                            onClick={onClick}
                         />
 
                     </div>
